@@ -1,8 +1,77 @@
 <#
-Microsoft Learn References:
+Microsoft Learn and Docs References:
 https://learn.microsoft.com/en-us/training/paths/manage-microsoft-365-services-use-windows-powershell/
-
+https://github.com/Azure/azure-powershell
+https://learn.microsoft.com/en-us/powershell/azure/?view=azps-9.5.0
+https://learn.microsoft.com/en-us/powershell/module/?view=azps-9.5.0
 #>
+
+#region AzureAD connection and basics
+Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
+Update-Module -Name Az -Scope CurrentUser -Force
+Install-Module -Name Az.Resources -Repository PSGallery -Scope CurrentUser
+
+#Log into Azure
+# Opens a new browser window to log into your Azure account.
+Connect-AzAccount
+
+# Log in with a previously created service principal. Use the application ID as the username, and the secret as password.
+$Credential = Get-Credential
+Connect-AzAccount -ServicePrincipal -Credential $Credential -TenantId $TenantId
+
+# Alternatively, log into a specific cloud, for example the Azure China cloud.
+Connect-AzAccount -Environment AzureChinaCloud
+
+#A session context persists login information across Azure PowerShell modules and PowerShell instances. Use the Get-AzContext cmdlet to view the context you are using in the current session. The results contain the Azure tenant and subscription.
+# Get the Azure PowerShell context for the current PowerShell session
+Get-AzContext
+
+# Lists all available Azure PowerShell contexts in the current PowerShell session
+Get-AzContext -ListAvailable
+
+# Get all of the Azure subscriptions in your current Azure tenant
+Get-AzSubscription
+
+# Get all of the Azure subscriptions in a specific Azure tenant
+Get-AzSubscription -TenantId $TenantId
+
+# Set the Azure PowerShell context to a specific Azure subscription
+Set-AzContext -Subscription $SubscriptionName -Name 'MyContext'
+
+# Set the Azure PowerShell context using piping
+Get-AzSubscription -SubscriptionName $SubscriptionName | Set-AzContext -Name 'MyContext'
+
+# List all cmdlets in the Az.Accounts module
+Get-Command -Module Az.Accounts
+
+# List all cmdlets that contain VirtualNetwork in their name
+Get-Command -Name '*VirtualNetwork*'
+
+# List all cmdlets that contain VM in their name in the Az.Compute module
+Get-Command -Module Az.Compute -Name '*VM*'
+
+# View basic help information for Get-AzSubscription
+Get-Help -Name Get-AzSubscription
+
+# View the examples for Get-AzSubscription
+Get-Help -Name Get-AzSubscription -Examples
+
+# View the full help for Get-AzSubscription
+Get-Help -Name Get-AzSubscription -Full
+
+# View the online version of the help from https://learn.microsoft.com for Get-AzSubscription
+Get-Help -Name Get-AzSubscription -Online
+
+
+#endregion
+
+#region Azure AD Users Groups Licenses and Roles
+
+
+
+
+#end region
+
 
 #region Microsoft365
 <#
@@ -48,6 +117,9 @@ Get-AzureADUser -All $true
 New-MsolUser -DisplayName "Abbie Parsons" -FirstName "Abbie" -LastName "Parsons" -UserPrincipalName AbbieP@adatum.com -Password "Pa55w.rd"
 Get-MsolUser -UserPrincipalName AbbieP@adatum.com
 Get-MsolUser -All
+
+#Managing groups with AzureAD cmdlets
+New-AzureADGroup -DisplayName "Marketing Group" -MailEnabled $true -SecurityEnabled $true -MailNickname MarketingGrp
 
 #endregion
 
