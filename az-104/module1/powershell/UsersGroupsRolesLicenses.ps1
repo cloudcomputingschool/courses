@@ -1,4 +1,11 @@
 <#
+Microsoft Learn References:
+https://learn.microsoft.com/en-us/training/paths/manage-microsoft-365-services-use-windows-powershell/
+
+#>
+
+#region Microsoft365
+<#
 You can manage Microsoft 365 by using the Azure AD PowerShell for Graph (AzureAD) module or the Microsoft Azure Active Directory Module for Windows PowerShell (MSOnline) module.
 The Azure AD PowerShell for Graph module is the newer module and is generally preferred over the Azure Active Directory Module for Windows PowerShell module. 
 However, some functionality in the Azure Active Directory Module for Windows PowerShell module isn't replicated in the Azure AD PowerShell for Graph module. 
@@ -29,3 +36,18 @@ The Microsoft 365 admin center provides a link to open Cloud Shell.
 Many PowerShell modules that are used to manage Microsoft 365 services are automatically installed in the shell. 
 You must have an Azure subscription to use Cloud Shell.
 #>
+
+#Manage users with AzureAD cmdlets
+$UserPassword=New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+$UserPassword.Password="Pa55w.rd"
+New-AzureADUser -DisplayName "Abbie Parsons" -GivenName "Abbie" -SurName "Parsons" -UserPrincipalName AbbieP@adatum.com -UsageLocation US -PasswordProfile $UserPassword -AccountEnabled $true
+Get-AzureADUser -ObjectId AbbieP@adatum.com
+Get-AzureADUser -All $true
+
+#Manage users with Msol cmdlets
+New-MsolUser -DisplayName "Abbie Parsons" -FirstName "Abbie" -LastName "Parsons" -UserPrincipalName AbbieP@adatum.com -Password "Pa55w.rd"
+Get-MsolUser -UserPrincipalName AbbieP@adatum.com
+Get-MsolUser -All
+
+#endregion
+
