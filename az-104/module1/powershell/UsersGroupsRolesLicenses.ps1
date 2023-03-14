@@ -65,7 +65,33 @@ Get-Help -Name Get-AzSubscription -Online
 
 #endregion
 
-#region Azure AD Users Groups Licenses and Roles
+#region Azure AD Users Groups Licenses Roles and other Azure AD components
+Get-AzADUser
+#Lists entities from users or get entity from users by key
+Get-AzADGroup
+#Lists entities from groups or get entity from groups by key
+Get-AzADApplication 
+#Lists entities from applications or get entity from applications by key
+Get-AzADGroupMember 
+#Lists members from group.
+Get-AzADOrganization 
+#Retrieve a list of organization objects.
+Get-AzADSpCredential
+#Lists key credentials and password credentials for an service principal.
+Get-AzADAppCredential
+#Lists key credentials and password credentials for an application.
+Get-AzADAppPermission 
+#Lists API permissions the application has requested.
+Get-AzADDomainService 
+#The Get Domain Service operation retrieves a json representation of the Domain Service.
+Get-AzADServicePrincipal 
+#Lists entities from service principals or get entity from service principals by key
+Get-AzAdvisorConfiguration
+#Retrieve Azure Advisor configurations and also retrieve configurations of contained resource groups.
+Get-AzAdvisorRecommendation
+#Obtains details of a cached recommendation.
+Get-AzADAppFederatedCredential 
+#Get federatedIdentityCredentials by Id from applications.
 
 
 
