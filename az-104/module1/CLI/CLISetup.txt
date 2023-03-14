@@ -1,0 +1,6 @@
+# Refer to https://learn.microsoft.com/en-us/cli/azure/install-azure-cli for step-by-step installation procedure for all supported platforms
+# Alternatively run Azure CLI in Azure Cloud Shell via the Azure portal or the Azure mobile app: 
+# https://learn.microsoft.com/en-us/azure/cloud-shell/quickstart?tabs=azurecli
+
+#Windows .msi installer
+# Download the latest Azure CLI installer from https://aka.ms/installazurecliwindows. 
